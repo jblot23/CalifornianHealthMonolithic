@@ -13,6 +13,10 @@ namespace CalifornianHealthMonolithic.ApiClient
 {
     public static class ConsultantClient
     {
+        /// <summary>
+        /// Fetct consultants
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<ConsultantDto>> FetchConsultant()
         {
             // Create a new RestClient with the base URL

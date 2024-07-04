@@ -12,6 +12,11 @@ namespace CalifornianHealthMonolithic.AppointmentApi.Controllers
 {
     public class AppointmentController : ApiController
     {
+        /// <summary>
+        /// Get all the appointments for the calender
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [System.Web.Http.HttpPost]
         public IEnumerable<Appointment> GetAllAppointment([FromBody] GetCurrentAppointment input)

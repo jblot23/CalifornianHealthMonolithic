@@ -13,7 +13,10 @@ namespace CalifornianHealthMonolithic.ConsultantApi.Controllers
 {
     public class ConsultantController : ApiController
     {
-
+        /// <summary>
+        /// Fetch all consultants
+        /// </summary>
+        /// <returns></returns>
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [System.Web.Http.HttpGet]
         public async Task<List<Consultant>> FetchConsultants()

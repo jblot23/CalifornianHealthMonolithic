@@ -13,6 +13,10 @@ namespace CalifornianHealthMonolithic.Controllers
     
     public class HomeController : Controller
     {
+        /// <summary>
+        /// an index page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
 
