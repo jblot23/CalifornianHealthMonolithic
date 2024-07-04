@@ -1,0 +1,258 @@
+﻿@model CalifornianHealthMonolithic.Models.ConsultantModelList
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+    <label for="consultant">Select Consultant you wish to make an appointment for</label>
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.SelectedConsultantId, Model.ConsultantsList, "- Please select -", new { @class = "form-control", @id = "select-consultant" })
+        @Html.ValidationMessageFor(m => m.SelectedConsultantId)
+    </div>
+
+</section>
+<section>
+</section>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div id='calendar'></div>
+
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="appointmentModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="FName">First Name:</label>
+                        <input type="text" class="form-control" id="FName" name="FName" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="LName">Last Name:</label>
+                        <input type="text" class="form-control" id="LName" name="LName" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="Address1">Address 1:</label>
+                        <input type="text" class="form-control" id="Address1" name="Address1" maxlength="255">
+                    </div>
+                    <div class="form-group">
+                        <label for="Address2">Address 2:</label>
+                        <input type="text" class="form-control" id="Address2" name="Address2" maxlength="255">
+                    </div>
+                    <div class="form-group">
+                        <label for="City">City:</label>
+                        <input type="text" class="form-control" id="City" name="City" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="Postcode">Postcode:</label>
+                        <input type="text" class="form-control" id="Postcode" name="Postcode" maxlength="10">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="StartTime">StartTime:</label>
+                        <input type="datetime-local" class="form-control" id="StartTime" name="StartTime" maxlength="10">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Postcode">EndTime:</label>
+                        <input type="datetime-local" class="form-control" id="EndTime" name="EndTime" maxlength="10">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="AddAppointment()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.js"></script>
+<script>
+
+
+    let calenderStart = '';
+    let calenderEnd = '';
+    let consultantId = 0;
+
+    const calendarEl = document.getElementById('calendar')
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        dateClick: function (info) {
+            calenderStart = info.dateStr;
+            calenderEnd = info.dateStr;
+            $("#appointmentModal").modal("show");
+        },
+        eventSources: [
+            {
+                events: function (fetchInfo, successCallback, failureCallback) {
+
+                    console.log(successCallback)
+                    console.log(fetchInfo.startStr);
+                    let eventList = [];
+
+                    setTimeout(function () {
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'https://localhost:44374/api/Appointment',
+                            data: { selectedDate: fetchInfo.startStr, consultantId: consultantId },
+                            success: function (data) {
+
+                                data.map((item, index) => {
+                                    let duplicate = {
+                                        title: "Booked",
+                                        start: item.StartDateTime.split("T")[0],
+                                        className: "bg-primary border-danger text-white"
+                                    };
+
+                                    eventList.push(duplicate);
+
+                                });
+
+                                console.log(successCallback(eventList))
+                                successCallback(eventList);
+
+                            },
+                            error: function (ex) {
+                                console.error(ex);
+
+                            }
+                        });
+
+                    },5000)
+                }
+            }
+        ]
+    })
+    calendar.render()
+
+
+
+
+    function AddAppointment() {
+        $("#appointmentModal").modal("hide");
+
+        
+        addAppointment(consultantId, calenderStart, calenderEnd)
+
+    }
+
+    function addAppointment(consultantid, start, end) {
+
+        let patient = {
+            FName: document.getElementById('FName').value,
+            LName: document.getElementById('LName').value,
+            Address1: document.getElementById('Address1').value,
+            Address2: document.getElementById('Address2').value,
+            City: document.getElementById('City').value,
+            Postcode: document.getElementById('Postcode').value
+        };
+
+
+        $.ajax({
+            type: "POST",
+            url: 'https://localhost:44374/api/Home', 
+            data: {
+                consultantid: consultantid,
+                start: document.getElementById("StartTime").value,
+                end: document.getElementById("EndTime").value,
+                patient: patient
+            },
+            success: function (response) {
+                if (response.success) {
+                    if (response == false) {
+                        alert("Appointment is alredy booked");
+                        clearAppointmentForm();
+                        
+                        return;
+                    }
+                    calendar.addEvent({
+                        title: 'Booked',
+                        start: calenderStart,
+                        end: calenderEnd
+                    });
+                    window.location.reload();
+
+                    console.log("Appointment added successfully!");
+                } else {
+                    console.log("Failed to add appointment: " + response.message);
+                    //alert("Appointment is alredy booked");
+
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("An error occurred: " + xhr.responseText);
+            }
+        });
+
+        clearAppointmentForm();
+    }
+
+    function clearAppointmentForm() {
+        document.getElementById('FName').value = "";
+        document.getElementById('LName').value = "";
+        document.getElementById('Address1').value = "";
+        document.getElementById('Address2').value = "";
+        document.getElementById('City').value = "";
+        document.getElementById('Postcode').value = "";
+    }
+
+    function getAllAppointments() {
+
+        let consultantId = document.getElementById('select-consultant').value;
+
+
+        $.ajax({
+            type: "GET",
+            url: 'https://localhost:44374/api/Home/GetAllAppointment',
+            success: function (response) {
+
+            },
+            error: function (xhr, status, error) {
+                console.log("An error occurred: " + xhr.responseText);
+            }
+        });
+
+    }
+
+    document.getElementById('select-consultant').addEventListener('change', function () {
+        var selectedValue = this.value;
+        window.location.href = `/Booking/GetConsultantCalendar?consultantId=${selectedValue}`;
+    });
+
+
+    setTimeout(function () {
+        // Parse the URL
+        let url = new URL(window.location.href);
+        let urlParams = new URLSearchParams(url.search);
+
+        // Get the specific query string parameter
+        consultantId = urlParams.get('consultantId');
+
+        // Log the parameter to the console
+        console.log('Consultant ID:', consultantId);
+
+        // Display the parameter on the page
+        document.getElementById('select-consultant').value = consultantId;
+    }, 2000)
+
+
+</script>
+
+

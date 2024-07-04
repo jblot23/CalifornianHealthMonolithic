@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealthMonolithic", "CalifornianHealthMonolithic\CalifornianHealthMonolithic.csproj", "{5FD042A3-4E83-4972-B98A-48CC6157F165}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealthMonolithic.Models", "CalifornianHealthMonolithic.Models\CalifornianHealthMonolithic.Models.csproj", "{B3D6665B-19D4-4F8B-937B-82781D76D797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentService.Services", "AppointmentService.Services\AppointmentService.Services.csproj", "{5745C4D1-3FF6-4779-A04D-A240C993D0F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealthMonolithic.PatientApi", "CalifornianHealthMonolithic.PatientApi\CalifornianHealthMonolithic.PatientApi.csproj", "{2F8849B5-77D9-4DC1-BD8A-93044CA8133B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealthMonolithic.ConsultantApi", "CalifornianHealthMonolithic.ConsultantApi\CalifornianHealthMonolithic.ConsultantApi.csproj", "{0358ACD6-B9A5-4E3A-9A76-72B6A1AA20E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealthMonolithic.ApiClient", "CalifornianHealthMonolithic.ApiClient\CalifornianHealthMonolithic.ApiClient.csproj", "{7324831D-4BC5-41FB-89B0-058368260A32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealthMonolithic.DTO", "CalifornianHealthMonolithic.DTO\CalifornianHealthMonolithic.DTO.csproj", "{34AEE2B0-D168-4D2D-994F-8D717942734B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealthMonolithic.AppointmentApi", "CalifornianHealthMonolithic.AppointmentApi\CalifornianHealthMonolithic.AppointmentApi.csproj", "{7F26144D-B914-4999-BCFF-94B104C3DE60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2.Tests", "WebApplication2.Tests\WebApplication2.Tests.csproj", "{3758A696-2CE0-4702-A434-4AC0D0655005}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FD042A3-4E83-4972-B98A-48CC6157F165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FD042A3-4E83-4972-B98A-48CC6157F165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FD042A3-4E83-4972-B98A-48CC6157F165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FD042A3-4E83-4972-B98A-48CC6157F165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D6665B-19D4-4F8B-937B-82781D76D797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D6665B-19D4-4F8B-937B-82781D76D797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D6665B-19D4-4F8B-937B-82781D76D797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D6665B-19D4-4F8B-937B-82781D76D797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5745C4D1-3FF6-4779-A04D-A240C993D0F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5745C4D1-3FF6-4779-A04D-A240C993D0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5745C4D1-3FF6-4779-A04D-A240C993D0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5745C4D1-3FF6-4779-A04D-A240C993D0F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8849B5-77D9-4DC1-BD8A-93044CA8133B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8849B5-77D9-4DC1-BD8A-93044CA8133B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8849B5-77D9-4DC1-BD8A-93044CA8133B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8849B5-77D9-4DC1-BD8A-93044CA8133B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0358ACD6-B9A5-4E3A-9A76-72B6A1AA20E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0358ACD6-B9A5-4E3A-9A76-72B6A1AA20E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0358ACD6-B9A5-4E3A-9A76-72B6A1AA20E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0358ACD6-B9A5-4E3A-9A76-72B6A1AA20E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7324831D-4BC5-41FB-89B0-058368260A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7324831D-4BC5-41FB-89B0-058368260A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7324831D-4BC5-41FB-89B0-058368260A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7324831D-4BC5-41FB-89B0-058368260A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34AEE2B0-D168-4D2D-994F-8D717942734B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34AEE2B0-D168-4D2D-994F-8D717942734B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34AEE2B0-D168-4D2D-994F-8D717942734B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34AEE2B0-D168-4D2D-994F-8D717942734B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F26144D-B914-4999-BCFF-94B104C3DE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F26144D-B914-4999-BCFF-94B104C3DE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F26144D-B914-4999-BCFF-94B104C3DE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F26144D-B914-4999-BCFF-94B104C3DE60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3758A696-2CE0-4702-A434-4AC0D0655005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3758A696-2CE0-4702-A434-4AC0D0655005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3758A696-2CE0-4702-A434-4AC0D0655005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3758A696-2CE0-4702-A434-4AC0D0655005}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBD20FA8-46A6-402A-BD5B-8245048657E4}
+	EndGlobalSection
+EndGlobal
